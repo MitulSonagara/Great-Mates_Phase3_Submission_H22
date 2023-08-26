@@ -1,74 +1,93 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Track Issues</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
     <h2>Track Issues</h2>
-    
-    <!-- Issue filter form -->
-    <form action="" method="GET">
-        <label for="issue_type">Issue Type:</label>
-        <select name="issue_type">
-            <option value="">All</option>
-            <option value="Pothole">Pothole</option>
-            <option value="Damaged Sign">Damaged Sign</option>
-            <!-- Add more issue types as needed -->
-        </select>
+    <div class="sidebar">
+        <nav id="navbar">
+            <header class="c2">InfraReport<br>________________</header>
+            <ul id="nav-item" class="sidenav">
+                <li><a href="dashboard.php" class="nav-link">Dashboard</a></li>
+                <li><a href="report_issue.php" class="nav-link ">New Complain</a></li>
+                <li class="active"><a href="track_issue.php" class="nav-link active">History</a></li>
 
-        <label for="status">Status:</label>
-        <select name="status">
-            <option value="">All</option>
-            <option value="Pending">Pending</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Resolved">Resolved</option>
-        </select>
+                <li><a href="index.php" class="nav-link">Log Out</a></li>
 
-        <button type="submit" name="filter">Apply Filter</button>
-    </form>
+            </ul>
+        </nav>
+    </div>
+    <div class="c1" id="main-doc">
+        <!-- Issue filter form -->
+        <form action="" method="GET">
+            <label for="issue_type">Issue Type:</label>
+            <select name="issue_type">
+                <option value="">All</option>
+                <option value="Pothole">Pothole</option>
+                <option value="Damaged Sign">Damaged Sign</option>
+                <!-- Add more issue types as needed -->
+            </select>
 
-    <!-- Display filtered issue reports -->
-    <h3>Filtered Issue Reports</h3>
-    <table>
-        <tr>
-            <th>Issue Type</th>
-            <th>Description</th>
-            <th>Status</th>
-            <!-- <th>Location</th> -->
-        </tr>
-        <?php
-        // Include database connection file
-        include 'db_connection.php';
+            <label for="status">Status:</label>
+            <select name="status">
+                <option value="">All</option>
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+            </select>
 
-        // Construct SQL query based on filter criteria
-        $sql = "SELECT * FROM issues WHERE 1";
+            <button type="submit" name="filter">Apply Filter</button>
+        </form>
 
-        if (isset($_GET['issue_type']) && !empty($_GET['issue_type'])) {
-            $issueType = $_GET['issue_type'];
-            $sql .= " AND issue_type='$issueType'";
-        }
+        <!-- Display filtered issue reports -->
+        <h3>Filtered Issue Reports</h3>
+        <table>
+            <tr>
+                <th>Issue Type</th>
+                <th>Description</th>
+                <th>Status</th>
+                <!-- <th>Location</th> -->
+            </tr>
+            <?php
+            // Include database connection file
+            include 'db_connection.php';
 
-        if (isset($_GET['status']) && !empty($_GET['status'])) {
-            $status = $_GET['status'];
-            $sql .= " AND status='$status'";
-        }
+            // Construct SQL query based on filter criteria
+            $sql = "SELECT * FROM issues WHERE 1";
 
-        // Execute the query
-        $result = mysqli_query($conn, $sql);
+            if (isset($_GET['issue_type']) && !empty($_GET['issue_type'])) {
+                $issueType = $_GET['issue_type'];
+                $sql .= " AND issue_type='$issueType'";
+            }
 
-        // Display issue reports
-        while ($row = mysqli_fetch_assoc($result)) {
-            echo "<tr>";
-            echo "<td>{$row['issue_type']}</td>";
-            echo "<td>{$row['description']}</td>";
-            echo "<td>{$row['status']}</td>";
-            // echo "<td>{$row['location']}</td>";
-            echo "</tr>";
-        }
+            if (isset($_GET['status']) && !empty($_GET['status'])) {
+                $status = $_GET['status'];
+                $sql .= " AND status='$status'";
+            }
 
-        // Close the database connection
-        mysqli_close($conn);
-        ?>
-    </table>
+            // Execute the query
+            $result = mysqli_query($conn, $sql);
+
+            // Display issue reports
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>{$row['issue_type']}</td>";
+                echo "<td>{$row['description']}</td>";
+                echo "<td>{$row['status']}</td>";
+                // echo "<td>{$row['location']}</td>";
+                echo "</tr>";
+            }
+
+            // Close the database connection
+            mysqli_close($conn);
+            ?>
+        </table>
+    </div>
 </body>
+
 </html>

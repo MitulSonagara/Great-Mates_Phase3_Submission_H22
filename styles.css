@@ -1,0 +1,281 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    zoom:1;
+    margin: 0;
+    background-image: url(https://katu.com/resources/media/5b10fb1c-bda9-4dfb-b99e-9ab4193c0dda-originalBlur_MarissaYuhasIcySt.JohnsBridgeonFebruary242023ViaChimeIn.jpeg?1677255697705);
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+    color: #140e0e;
+    font-size: 1.3rem;
+    line-height: 1.5rem;
+    font-family: 'Open Sans', Arial, sans-serif;
+}
+.c2{
+    color: #E7F6F2;
+}
+
+.topbar-container {
+    z-index: 1;
+}
+
+.nav-link{
+margin: 20px;
+font-size: larger;
+}
+
+.topbar {
+    position: fixed;
+    width: 100%;
+    top: -3.8rem;
+    background-color: #041a48;
+    height: 3.8rem;
+    display: block;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0.9rem;
+    box-shadow: 2px 2px 5px black;
+    transition: top 1s ease;
+}
+
+.hamburger {
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    cursor: pointer;
+    color: #E7F6F2;
+}
+
+.sidebar{
+    height: auto;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left:-320pxpx;
+    width: 320px;
+    transition: left 0.5s ease;
+    background-color: #041a48;
+    min-width: 320px;
+    border-right: 2px solid #041a48;
+    box-shadow: 2px 2px 5px black;
+    z-index: 1;
+}
+nav header {
+    display: block;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin: 15px;
+}
+
+.sidebar #navbar .sidenav {
+    height: 90%;
+    overflow: auto;
+    padding: 0;
+    background-color: #041a48;
+}
+
+#navbar li {
+    color: #A5C9CA;
+    width: 100%;
+    list-style: none;
+    border-top: 2px solid #041a48;
+}
+#navbar li.active,#navbar a.active{
+    background-color: #82cbe7;
+    color: #232931;
+
+}
+#navbar a {
+    display: block;
+    text-decoration: none;
+    color: #A5C9CA;
+    padding: 10px 30px;
+    cursor: pointer;
+} 
+
+#navbar li:hover,
+#navbar a:hover {
+    background-color: #82cbe7;
+    color: #232931;
+}
+
+#main-doc header {
+    font-size: 2rem;
+    text-align: left;
+    margin: 0;
+    color: #1f2222;
+    font-weight: 900;
+    text-shadow: 1px 1px;
+}
+
+#main-doc {
+    margin: 10px;
+    position: absolute;
+    left: 340px;
+    z-index: -1;
+
+}
+
+section article {
+    margin: 15px;
+    font-size: 1.2rem;
+}
+
+section li {
+    margin: 15px 0px 0px 20px;
+}
+
+code {
+    display: block;
+    word-break: normal;
+    white-space: pre-line;
+    word-wrap: normal;
+    line-height: 2.1;
+    background-color: #041a48;
+    padding: 15px;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 865px) {
+
+    .topbar{
+        top:0;
+    }
+    .hamburger{
+        display: block;
+    }
+
+    .sidebar{
+        left:-320px;
+    }
+
+    .sidebar.visible{
+        left:0;
+    }
+
+    #main-doc {
+        margin: 10px;
+        position: absolute;
+        left: 10px;
+        top: 70px;
+    } 
+
+    .c1{
+        color: black;
+        margin: 10px;
+        position: absolute;
+        left: 10px;
+        top: 70px;
+        border-radius: 5px;
+        padding: 20px;
+    }
+    /* #navbar {
+        position: fixed;
+        top: 0;
+        height: auto;
+        width: 100%;
+        border-left: none;
+        border-bottom: 2px solid #232931;
+    }
+
+    nav header {
+        display: inline-block;
+    }
+
+    #navbar .icon {
+        display: inline-block;
+    }
+
+    #navbar .sidenav {
+        display: none;
+        height: 90%;
+        overflow: auto;
+        padding: 0;
+        background-color: #2C3333;
+    }
+
+    #navbar .sidenav.res {
+        display: block;
+        position: relative;
+    }
+
+    #main-doc {
+        margin: 10px;
+        position: absolute;
+        left: 10px;
+        top: 70px;
+    } */
+
+}
+
+@media screen and (min-width: 866px){
+    .topbar-container{
+        display: none;
+    }
+
+    .sidebar{
+        left: 0;
+    }
+}
+
+.l{
+    float: left;
+    width: 200px;
+    margin-top: 2px;
+}
+
+.i{
+    float: left;
+    width: 500px;
+    margin-top: 2px;
+
+}
+
+.row::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+label{
+    display: inline-block;
+    padding: 12px 12px 12px 0;
+}
+
+input[type=text], select, textarea ,input[type=tel],input[type=date],input[type=file]{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+
+  .submit {
+    background-color: #3d619f;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+  }
+  
+  .submit:hover {
+    background-color: #68a7de;
+  }
+
+  table{
+    background-color: #82cbe7;
+
+  }
+  tr:nth-child(even){
+    background-color: #1b2a4a;
+    color: #ccc;
+  }

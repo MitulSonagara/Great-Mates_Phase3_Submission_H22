@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Search and Filter Issues</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
+<div class="sidebar">
+        <nav id="navbar">
+            <header class="c2">InfraReport<br>________________</header>
+            <ul id="nav-item" class="sidenav">
+                <li ><a href="admin_dashboard.php" class="nav-link">Dashboard</a></li>
+                <li><a href="admin_panel.php" class="nav-link">Change Status</a></li>
+                <li class="active"><a href="search_issues.php" class="nav-link  active">History</a></li>
+                
+                <li><a href="admin_login.php" class="nav-link">Log Out</a></li>
+
+            </ul>
+        </nav>
+    </div>
+    <div class="c1" id="main-doc">
     <h2>Search and Filter Issues</h2>
-    
+
     <!-- Search and filter form -->
     <form action="" method="GET">
         <label for="issue_type">Issue Type:</label>
@@ -29,12 +47,12 @@
 
     <!-- Display filtered issue reports -->
     <h3>Filtered Issue Reports</h3>
-    <table>
+    <table border="1" width="800px">
         <tr>
             <th>Issue Type</th>
-            <th>Description</th>
+            <th width="300px">Description</th>
             <th>Status</th>
-            <th>Location</th>
+            <th>Image</th>
         </tr>
         <?php
         // Include database connection file
@@ -61,7 +79,7 @@
             echo "<td>{$row['issue_type']}</td>";
             echo "<td>{$row['description']}</td>";
             echo "<td>{$row['status']}</td>";
-            echo "<td>{$row['location']}</td>";
+            echo "<td><a href='{$row['image_path']}' target='blank'>View Photo</a></td>";
             echo "</tr>";
         }
 
@@ -70,4 +88,5 @@
         ?>
     </table>
 </body>
+
 </html>

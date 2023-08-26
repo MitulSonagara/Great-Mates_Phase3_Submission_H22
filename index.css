@@ -13,6 +13,10 @@ a {
     color: #050404;
 }
 
+.abc{
+    margin: auto;
+}
+
 a:hover {
     color: #75b9db;
     text-decoration: none;
@@ -40,4 +44,13 @@ a:hover {
 
 h1 {
     color: #ffffff;
+}
+
+#aa{
+    background-color: #f44336;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
 }

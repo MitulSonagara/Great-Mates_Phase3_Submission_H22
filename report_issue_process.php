@@ -25,13 +25,18 @@ if ($_FILES['image']['error'] === 0) {
             $issueType = $_POST['issue_type'];
             $description = $_POST['description'];
             $status="pending";
+            $state=$_POST['State'];
+            $city=$_POST['City'];
+            $Address=$_POST['Address'];
+            $pincode=$_POST['Pincode'];
+
 
             // Insert issue data into the database (you should use prepared statements)
-            $sql = "INSERT INTO issues (`issue_type`, `description`, `image_path`, `status`) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO issues (`issue_type`, `description`, `image_path`, `status`,`state`,`city`,`address`,`pincode`) VALUES (?, ?, ?, ?,?,?,?,?)";
 
             if ($stmt = mysqli_prepare($conn, $sql)) {
                 // Bind parameters
-                mysqli_stmt_bind_param($stmt, "ssss", $issueType, $description, $uploadFile,$status);
+                mysqli_stmt_bind_param($stmt, "ssssssss", $issueType, $description, $uploadFile,$status,$state,$city,$Address,$pincode);
 
                 if (mysqli_stmt_execute($stmt)) {
                     // Issue report successful, redirect to a confirmation page or dashboard
