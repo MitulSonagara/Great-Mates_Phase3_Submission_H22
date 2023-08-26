@@ -29,7 +29,7 @@
             echo "<td>{$row['issue_type']}</td>";
             echo "<td>{$row['description']}</td>";
             echo "<td>{$row['status']}</td>";
-            echo "<td>{$row['location']}</td>";
+            // echo "<td>{$row['location']}</td>";
             echo "<td><a href='change_status.php?id={$row['id']}'>Change Status</a></td>";
             echo "</tr>";
         }

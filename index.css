@@ -1,0 +1,43 @@
+body {
+    background: linear-gradient(135deg, #71b7e6, #3b5998);
+    height: 100vh;
+}
+
+h1 {
+    color: #3b5998;
+    padding-bottom: 2rem;
+    font-weight: bold;
+}
+
+a {
+    color: #050404;
+}
+
+a:hover {
+    color: #75b9db;
+    text-decoration: none;
+}
+
+.form-control:focus {
+
+    color: #000;
+    background-color: #fff;
+    border: 2px solid #3b5998;
+    outline: 0;
+    box-shadow: none;
+
+}
+
+.btn {
+    background: #82cbe7;
+    border: #3b5998;
+}
+
+.btn:hover {
+    background: #3b5998;
+    border: #E8D426;
+}
+
+h1 {
+    color: #ffffff;
+}

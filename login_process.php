@@ -7,11 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Hash the password (you should use password_verify in production)
-    $hashedPassword = md5($password); // Not recommended for production
-
     // Check if the user exists in the database
-    $sql = "SELECT * FROM users WHERE username='$username' AND password='$hashedPassword'";
+    $sql = "SELECT * FROM registration WHERE username='$username' AND password='$password'";
 
     $result = mysqli_query($conn, $sql);
 

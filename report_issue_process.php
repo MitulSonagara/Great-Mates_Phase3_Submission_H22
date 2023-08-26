@@ -1,35 +1,62 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['report'])) {
-    // Include database connection file
-    include 'db_connection.php';
+// Check if a file was uploaded
+if ($_FILES['image']['error'] === 0) {
+    $uploadDir = 'uploads/'; // Directory where you want to store uploaded files
 
-    // Get user input
-    $issueType = $_POST['issue_type'];
-    $description = $_POST['description'];
-
-    // Handle file upload (you should perform validation and security checks)
-    if (isset($_FILES['image'])) {
-        $file = $_FILES['image'];
-        $fileName = $file['name'];
-        $fileTmpName = $file['tmp_name'];
-        $fileSize = $file['size'];
-
-        // Move the uploaded file to a server directory
-        move_uploaded_file($fileTmpName, 'uploads/' . $fileName);
+    // Create the uploads directory if it doesn't exist
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
     }
 
-    // Insert issue data into the database (you should use prepared statements)
-    $sql = "INSERT INTO issues (issue_type, description, image_path) VALUES ('$issueType', '$description', 'uploads/$fileName')";
+    $uploadFile = $uploadDir . basename($_FILES['image']['name']);
 
-    if (mysqli_query($conn, $sql)) {
-        // Issue report successful, redirect to a confirmation page or dashboard
-        header("Location: report_confirmation.php");
+    // Check if a file with the same name already exists
+    if (file_exists($uploadFile)) {
+        echo "File already exists. Please rename your file and try again.";
     } else {
-        // Issue report failed, display an error message
-        echo "Error: " . mysqli_error($conn);
-    }
+        // Move the uploaded file to the specified directory
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+            // File upload successful, proceed with issue reporting
 
-    // Close the database connection
-    mysqli_close($conn);
+            // Include database connection file
+            include 'db_connection.php';
+
+            // Get user input
+            $issueType = $_POST['issue_type'];
+            $description = $_POST['description'];
+            $status="pending";
+
+            // Insert issue data into the database (you should use prepared statements)
+            $sql = "INSERT INTO issues (`issue_type`, `description`, `image_path`, `status`) VALUES (?, ?, ?, ?)";
+
+            if ($stmt = mysqli_prepare($conn, $sql)) {
+                // Bind parameters
+                mysqli_stmt_bind_param($stmt, "ssss", $issueType, $description, $uploadFile,$status);
+
+                if (mysqli_stmt_execute($stmt)) {
+                    // Issue report successful, redirect to a confirmation page or dashboard
+                    header("Location: report_confirmation.php");
+                } else {
+                    // Issue report failed, display an error message
+                    echo "Error: " . mysqli_error($conn);
+                }
+
+                // Close the statement
+                mysqli_stmt_close($stmt);
+            } else {
+                // Error in preparing the SQL statement
+                echo "Error: " . mysqli_error($conn);
+            }
+
+            // Close the database connection
+            mysqli_close($conn);
+        } else {
+            // File upload failed
+            echo "Upload failed.";
+        }
+    }
+} else {
+    // File upload error
+    echo "Error: " . $_FILES['image']['error'];
 }
 ?>
