@@ -24,14 +24,17 @@
 
     <!-- Display reported issues -->
     <h3>Reported Issues</h3>
-    <table border="1" width="800px">
-        <tr>
-            <th>Issue Type</th>
-            <th width="300px">Description</th>
-            <th>Status</th>
-            <th>Image</th>
-            <th>Actions</th>
-        </tr>
+    <table border="1" width="1150px">
+    <tr>
+        <th>Issue Type</th>
+        <th width="300px">Description</th>
+        <th>State</th>
+        <th>City</th>
+        <th>Address</th>
+        <th>Pincode</th>
+        <th>Status</th>
+        <th>Image</th>
+    </tr>
         <?php
         // Include database connection file
         include 'db_connection.php';
@@ -44,6 +47,10 @@
             echo "<tr>";
             echo "<td>{$row['issue_type']}</td>";
             echo "<td>{$row['description']}</td>";
+            echo "<td>{$row['state']}</td>";
+            echo "<td>{$row['city']}</td>";
+            echo "<td>{$row['address']}</td>";
+            echo "<td>{$row['pincode']}</td>";
             echo "<td>{$row['status']}</td>";
             echo "<td><a href='{$row['image_path']}' target='blank'>View Photo</a></td>";
             echo "<td><a href='change_status.php?id={$row['issue_id']}'>Change Status</a></td>";

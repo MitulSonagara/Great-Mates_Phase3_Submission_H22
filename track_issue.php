@@ -36,9 +36,11 @@
             <label for="status">Status:</label>
             <select name="status">
                 <option value="">All</option>
-                <option value="Pending">Pending</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Resolved">Resolved</option>
+                <option value="Road issues">Road issues</option>
+                <option value="Water issues">Water issues</option>
+                <option value="Electricity">Electricity</option>
+                <option value="Drainage">Drainage</option>
+                <option value="Damaged Sign">Damaged Sign</option>
             </select>
 
             <button type="submit" name="filter">Apply Filter</button>
@@ -46,12 +48,16 @@
 
         <!-- Display filtered issue reports -->
         <h3>Filtered Issue Reports</h3>
-        <table>
+        <table border="1" width="1150px">
             <tr>
                 <th>Issue Type</th>
-                <th>Description</th>
+                <th width="300px">Description</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Address</th>
+                <th>Pincode</th>
                 <th>Status</th>
-                <!-- <th>Location</th> -->
+                <th>Image</th>
             </tr>
             <?php
             // Include database connection file
@@ -78,7 +84,12 @@
                 echo "<tr>";
                 echo "<td>{$row['issue_type']}</td>";
                 echo "<td>{$row['description']}</td>";
+                echo "<td>{$row['state']}</td>";
+                echo "<td>{$row['city']}</td>";
+                echo "<td>{$row['address']}</td>";
+                echo "<td>{$row['pincode']}</td>";
                 echo "<td>{$row['status']}</td>";
+                echo "<td><a href='{$row['image_path']}' target='blank'>View Photo</a></td>";
                 // echo "<td>{$row['location']}</td>";
                 echo "</tr>";
             }
